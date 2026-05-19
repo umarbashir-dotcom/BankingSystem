@@ -1,4 +1,5 @@
-//						*****Our Project (BANKING SYSTEM) in Structured Programming.
+//		       BANKING SYSTEM
+
 #include <iostream>
 using namespace std;
 void showMenu(){ 
@@ -11,6 +12,8 @@ void showMenu(){
 		<<"7. Delete Account\n"
 		<<"8. Exit\n";	
 }
+
+// create account
 void createAccount(string names[],string type[],int number[],double balance[],int & count){
 	cout<<"*Please Enter the Following Details to create a new account:-\n";
 	cout<<"Enter Name: ";
@@ -35,6 +38,8 @@ void createAccount(string names[],string type[],int number[],double balance[],in
 	accountNumber++;
 	count++;
 }
+
+// display accounts
 void displayAccounts(string names[],string type[],int number[],double balance[],int count){
 	if(count<1){
 		cout<<"No account is created yet.Please!Create Account First.\n";
@@ -48,6 +53,8 @@ void displayAccounts(string names[],string type[],int number[],double balance[],
 	}
 	cout<<"*************************************************************\n";
 }
+
+// search account
 void searchAccount(string names[],string type[],int number[],double balance[],int count){
 	if(count<1){
 		cout<<"No account is created yet.Please!Create Account First.\n";
@@ -69,10 +76,14 @@ void searchAccount(string names[],string type[],int number[],double balance[],in
 		cout<<"No Account found with this Account Number!\n";
 	}
 }
+
+// handle positive deposit
 double positiveDeposit(double deposit,double balance[],int i){
 	balance[i]=balance[i]+deposit;
 	return deposit;
 }
+
+// handle negative deposit
 double negativeDeposit(double deposit,double balance[],int i){
 	while (deposit<1){
 		cout<<"Invalid Amount!Please Enter correct Amount: ";
@@ -82,6 +93,8 @@ double negativeDeposit(double deposit,double balance[],int i){
 	balance[i]=balance[i]+deposit;
 	return deposit;
 }
+
+// deposit
 void depositMoney(int number[],double balance[],int count){
 	if(count<1){
 		cout<<"Your account is not created yet.Please!Create Account First.\n";
@@ -120,6 +133,7 @@ void depositMoney(int number[],double balance[],int count){
 		cout<<"Amount ("<<deposit<<") is deposited successfully.\n";
 	return ;
 }
+
 void withdrawMoneylessThanzero(double withdrawAmount,double balance[],int i);
 void withdrawMoneygreaterThanbalance(double withdrawAmount,double balance[],int i){
 	while (withdrawAmount>balance[i]){
@@ -147,6 +161,7 @@ void withdrawMoneylessThanzero(double withdrawAmount,double balance[],int i){
 	return;
 }
 
+// withdraw money
 void withdrawMoney(int accNumber[],double balance[],int count){
 	if(count<1){
 		cout<<"Your account is not created.Please!Create Account First.\n";
@@ -188,18 +203,24 @@ void withdrawMoney(int accNumber[],double balance[],int count){
 	}
 	return ;
 }
+
+// modify account name
 void modifyName(string names[],int i){
 	cout<<"Enter new name: ";
 	getline(cin,names[i]);
 	cout<<"Your name is modified successfully.\n";
 	return;
 }
+
+// modify account type
 void modifyType(string type[],int i){
 	cout<<"Enter Account Type: ";
 	getline(cin,type[i]);
 	cout<<"Your account Type is modified successfully.\n";
 	return;
 }
+
+// modify account 
 void modifyAccount(string names[],string type[],int number[],int count){
 	if(count==0){
 		cout<<"You have not created account.Please!Create Account first.\n";
@@ -230,6 +251,7 @@ void modifyAccount(string names[],string type[],int number[],int count){
 	}
 }
 
+// delete account
 void deleteAccount(string names[],string type[],int number[],double balance[],int &count){
 	if(count<1){
 		cout<<"No Account is created yet!Please Create Account first.\n";
@@ -280,39 +302,55 @@ int main(){
 		cin>>choice;
 		cin.ignore();
 		switch (choice){
+			// create account
 			case 1:{
 				createAccount(names,accountType,accountNumbers,balance,count);
 				break;
 			}
+
+			// display accounts
 			case 2:{
 				displayAccounts(names,accountType,accountNumbers,balance,count);
 				break;
 			}
+
+			// search account
 			case 3:{
 				searchAccount(names,accountType,accountNumbers,balance,count);
 				break;
 			}
+
+			// deposit money
 			case 4:{
 				depositMoney(accountNumbers,balance ,count);
 				break;
 			}
+
+			// withdraw money
 			case 5:{
 				withdrawMoney(accountNumbers,balance,count);
 				break;
 			}
+
+			// modify account
 			case 6:{
 				modifyAccount(names,accountType,accountNumbers,count);
 				break;
 			}
+
+			// delete account
 			case 7:{
 				deleteAccount(names,accountType,accountNumbers,balance,count);
 				break;
 			}
+
+			// exit
 			case 8:{
 				cout<<" ------------EXITING THE PROGRAM-------------\n";
 				exit(0);
 				break;
 			}
+
 			default:
 				cout<<"Invaid Input!Please read MENU options carefully.\n";
 		}	
